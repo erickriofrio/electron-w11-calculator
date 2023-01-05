@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Electron Calculator</title>
+  </head>
+  <body>
+    
+    <!-- menu icon -->
+    <!-- <i class="bi bi-list"></i> -->
+    <!-- history icon -->
+    <!-- <i class="bi bi-clock-history"></i> -->
+    <!-- settings icon -->
+    <!-- <i class="bi bi-gear"></i> -->
+    <!-- trash -->
+    <!-- <i class="bi bi-trash3"></i> -->
+    <div class="container-fluid h-100 p-1">
+      <div class="d-flex flex-row h-100 w-100 justify-content-between">
+        
+        <!-- Main Panel -->
+        <div class="d-flex flex-column h-100 flex-fill justify-content-between align-items-center">
+
+          <!-- Title -->
+          <div class="d-flex flex-row w-100 align-items-center justify-content-start">
+            <h5 class="p-3">Electron Calculator</h5>
+          </div>
+    
+          <!-- Processing Panel -->
+          <div class="row process-panel w-100">
+            <div class="col pt-3">
+              <div class="d-flex flex-column justify-content-end align-items-end">
+                <small>1 + 2 =</small>
+                <h1 class="current-number">3</h1>
+              </div>
+            </div>
+          </div>
+          <!-- Buttons Section -->
+          <div class="row mt-2 p-0 buttons-section h-100 w-100">
+            <div class="col p-0 h-100">
+              <div class="d-flex flex-column justify-content-between h-100">
+  
+                <div class="d-flex flex-row buttons-row align-items-center justify-content-center">
+                  <button id="rest"       type="button" class="btn btn-secondary flex-fill calc-button operator-button">%</button>
+                  <button id="delete-ce"  type="button" class="btn btn-secondary flex-fill calc-button operator-button">CE</button>
+                  <button id="delete-all" type="button" class="btn btn-secondary flex-fill calc-button operator-button">C</button>
+                  <button id="delete"     type="button" class="btn btn-secondary flex-fill calc-button operator-button"><i class="bi bi-arrow-left-square"></i></button>
+                </div>
+                <div class="d-flex flex-row buttons-row align-items-center justify-content-center">
+                  <button id=""         type="button" class="btn btn-secondary flex-fill calc-button operator-button">?</button>
+                  <button id=""         type="button" class="btn btn-secondary flex-fill calc-button operator-button">?</button>
+                  <button id=""         type="button" class="btn btn-secondary flex-fill calc-button operator-button">?</button>
+                  <button id="division" type="button" class="btn btn-secondary flex-fill calc-button operator-button">/</button>
+                </div>
+                <div class="d-flex flex-row buttons-row align-items-center justify-content-center">
+                  <button id="7"        type="button" class="btn btn-secondary flex-fill calc-button number-button">7</button>
+                  <button id="8"        type="button" class="btn btn-secondary flex-fill calc-button number-button">8</button>
+                  <button id="9"        type="button" class="btn btn-secondary flex-fill calc-button number-button">9</button>
+                  <button id="multiply" type="button" class="btn btn-secondary flex-fill calc-button operator-button">x</button>
+                </div>
+                <div class="d-flex flex-row buttons-row align-items-center justify-content-center">
+                  <button id="4"     type="button" class="btn btn-secondary flex-fill calc-button number-button">4</button>
+                  <button id="5"     type="button" class="btn btn-secondary flex-fill calc-button number-button">5</button>
+                  <button id="6"     type="button" class="btn btn-secondary flex-fill calc-button number-button">6</button>
+                  <button id="minus" type="button" class="btn btn-secondary flex-fill calc-button operator-button"><i class="bi bi-dash"></i></button>
+                </div>
+                <div class="d-flex flex-row buttons-row align-items-center justify-content-center">
+                  <button id="1"   type="button" class="btn btn-secondary flex-fill calc-button number-button">1</button>
+                  <button id="2"   type="button" class="btn btn-secondary flex-fill calc-button number-button">2</button>
+                  <button id="3"   type="button" class="btn btn-secondary flex-fill calc-button number-button">3</button>
+                  <button id="add" type="button" class="btn btn-secondary flex-fill calc-button operator-button"><i class="bi bi-plus"></i></button>
+                </div>
+                <div class="d-flex flex-row buttons-row align-items-center justify-content-center">
+                  <button id="plus-minus" type="button" class="btn btn-secondary flex-fill calc-button number-button"><i class="bi bi-plus-slash-minus"></i></button>
+                  <button id="0"          type="button" class="btn btn-secondary flex-fill calc-button number-button">0</button>
+                  <button id="comma"      type="button" class="btn btn-secondary flex-fill calc-button number-button">,</button>
+                  <button id="equal"      type="button" class="btn btn-secondary flex-fill calc-button result-button">=</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- History Panel -->
+        <div class="d-flex flex-column history-panel h-100 p-3 justify-content-start align-items-start">
+          <h6>History</h6>
+          <div class="d-flex flex-column justify-content-between align-items-end h-100 w-100">
+            <small>1 + 2 = 3</small>
+            <i class="bi bi-trash3"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>

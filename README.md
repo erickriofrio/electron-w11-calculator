@@ -1,2 +1,2 @@
 # electron-calculator
- Simple calculator app to practice and understand ElectronJS
+ Simple calculator app windows-11-like to practice and understand ElectronJS

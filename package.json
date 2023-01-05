@@ -1,0 +1,21 @@
+{
+  "name": "electron-calculator",
+  "version": "1.0.0",
+  "description": "Simple calculator app windows-11-like to practice and understand ElectronJS",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "nodemon --watch html . --exec \"electron .\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^22.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.3",
+    "nodemon": "^2.0.20"
+  }
+}
