@@ -32,8 +32,8 @@ app.once('ready', () => {
 		}
 	});
 	window.setMenuBarVisibility(false);
-	window.loadURL(url.format({ pathname: path.join(__dirname, 'index.html'), protocol: 'file:', slashes: true }));
-	// window.webContents.openDevTools();
+	window.loadURL(url.format({ pathname: path.join(__dirname, 'src/index.html'), protocol: 'file:', slashes: true }));
+	window.webContents.openDevTools();
 	window.once('closed', () => window = null);
 });
 

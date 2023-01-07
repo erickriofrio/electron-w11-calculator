@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./index.css">
     <title>Electron Calculator</title>
   </head>
@@ -34,8 +34,8 @@
           <div class="row process-panel w-100">
             <div class="col pt-3">
               <div class="d-flex flex-column justify-content-end align-items-end">
-                <small>1 + 2 =</small>
-                <h1 class="current-number">3</h1>
+                <small id="current-operation"></small>
+                <h1 id="current-number" class="current-number">0</h1>
               </div>
             </div>
           </div>
@@ -98,4 +98,5 @@
     </div>
 
   </body>
+  <script src="./renderer.js"></script>
 </html>
