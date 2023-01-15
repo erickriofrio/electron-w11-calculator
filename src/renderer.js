@@ -1,7 +1,11 @@
 const { OPERATORS } = require('./consts');
 
-let operatorChosen = false;
-let currOperation  = '';
+let operatorChosen  = false;
+let currOperation   = '';
+let leftNumber      = 0;
+let rightNumber     = 0;
+let currentResult   = 0;
+let currentOperator = '';
 
 // numbers
 const currentNumber    = document.getElementById('current-number');
@@ -40,7 +44,6 @@ const comma            = document.getElementById('comma');
 const plusMinus        = document.getElementById('plus-minus');
 const deleteSingle     = document.getElementById('delete');
 const deleteAll        = document.getElementById('delete-all');
-const deleteCe         = document.getElementById('delete-ce');
 
 comma.addEventListener('click', commaClicked);
 
@@ -49,6 +52,7 @@ addOperator.addEventListener('click',      operatorClicked.bind(this, OPERATORS.
 minusOperator.addEventListener('click',    operatorClicked.bind(this, OPERATORS.MINUS));
 divisionOperator.addEventListener('click', operatorClicked.bind(this, OPERATORS.DIVISON));
 multiplyOperator.addEventListener('click', operatorClicked.bind(this, OPERATORS.MULTIPLY));
+equalOperator.addEventListener('click',    computeResult);
 
 deleteSingle.addEventListener('click', clearSingle);
 deleteAll.addEventListener('click',    clearAll);
@@ -59,20 +63,32 @@ deleteAll.addEventListener('click',    clearAll);
 */
 function numberClicked(evt) {
   
+  console.log(rightNumber);
   const value = evt.target.innerText;
 
-  console.log('CURRENT NUMBER', currentNumber.innerText, operatorChosen, 'CURR VALUE:', value);
-  if (operatorChosen || currentNumber.innerText == 0)
+  if (!currentOperation.innerText) {
+
+    leftNumber  = leftNumber == 0 ? '' : leftNumber;
+    leftNumber += value;
+  }
+
+  if (operatorChosen || currentNumber.innerText == 0) {
+
     currentNumber.innerText = value;
+  }
   else {
     
     currentNumber.innerText += value;
     // addSuperiorOrder(); TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
-  
+
+  if (!!leftNumber && !!currentOperation.innerText || !leftNumber)
+    rightNumber = currentNumber.innerText;
+
   currOperation += value;
-  console.log(currOperation);
   operatorChosen = false;
+  
+  console.log('left:', leftNumber, 'right:', rightNumber);
 }
 
 /**
@@ -99,7 +115,7 @@ function zeroClicked(evt) {
     return;
   
   if (operatorChosen)
-  currentNumber.innerText = '0';
+    currentNumber.innerText = '0';
   else
     currentNumber.innerText += '0';
   
@@ -123,6 +139,10 @@ function clearAll() {
   currentNumber.innerText    = 0;
   currentOperation.innerText = '';
   currOperation              = '';
+  leftNumber                 = 0;
+  rightNumber                = 0;
+  currentResult              = 0;
+  currentOperator            = '';
 }
 
 /**
@@ -157,11 +177,74 @@ function isMultipleOfThree(number) {
  */
 function operatorClicked(operator) {
 
-  if (operatorChosen)
+  if (operatorChosen) {
+
+    currOperation        = operator;
+    let currOperationArr = currentOperation.innerText.split('')
+    currOperationArr.pop();
+    currentOperation.innerText = currOperationArr.join('') + currOperation;
+    return;
+  }
+
+  computeResult(operator);
+  // console.log('post', rightNumber);
+}
+
+/**
+ * 
+ * @param {*} operator 
+ * @returns 
+ */
+function computeResult(operator) {
+
+  const equalOperator = !(typeof operator === 'string');
+
+  if (!leftNumber && !rightNumber && equalOperator)
     return;
 
-  operatorChosen             = true;
-  currOperation             += operator;
-  currentOperation.innerText = currOperation;
-  // TODO
+  let op;
+  if (equalOperator) {
+
+    operator                   = currentOperator;
+    op                         = currentOperator;
+    currOperation             += '=';
+    currentOperation.innerText = currOperation;
+  }
+  else {
+
+    op                         = rightNumber && leftNumber ? currentOperator : operator;
+    currOperation             += operator;
+    operatorChosen             = true;
+    currentOperator            = operator;
+    currentOperation.innerText = currOperation;
+  }
+
+  if (!rightNumber)
+    return;
+
+  switch (op) {
+
+    case OPERATORS.ADD:
+      currentResult = (+leftNumber) + (+rightNumber);
+      break;
+    case OPERATORS.MINUS:
+      currentResult = (+leftNumber) - (+rightNumber);
+      break;
+    case OPERATORS.MULTIPLY:
+      currentResult = (+leftNumber) * (+rightNumber);
+      break;
+    case OPERATORS.DIVISON:
+      currentResult = (+leftNumber) / (+rightNumber);
+      break;
+    case OPERATORS.REST:
+      currentResult = (+leftNumber) % (+rightNumber);
+      break;
+  }
+
+  leftNumber              = currentResult;
+  rightNumber             = '';
+  currentNumber.innerText = currentResult;
+
+  if (equalOperator)
+    currOperation = leftNumber;
 }
